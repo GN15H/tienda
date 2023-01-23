@@ -14,7 +14,7 @@ function Producto(props){
                     <p>{props.detallesProducto}</p>
                     <p>{props.precio}$</p>
                 </div>
-          
+                <Link to={`/productos/${props.id}`}><button className='btn btn-info'>COMPRAR</button></Link>
 
         </div>
 
