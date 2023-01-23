@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import ContenedorProductos from './componentes/ContenedorProductos';
 import Header from './componentes/Header'
@@ -7,7 +8,14 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <ContenedorProductos/>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<ContenedorProductos />}/>
+
+
+        </Routes>
+      </BrowserRouter>
+      {/*<ContenedorProductos/>*/}
     </div>  
   );
 }
