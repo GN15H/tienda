@@ -27,9 +27,10 @@ function ContenedorProductos(props){
                 {
                     blogs.map((blog) => 
                         <Producto 
+                            id={blog.id}
+                            key={blog.id}
                             nombreProducto={blog.nombreProducto}
                             detallesProducto={blog.descripcion}
-                            id={blog.id}
                             precio={blog.precio}
                         />
                        

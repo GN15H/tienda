@@ -2,6 +2,7 @@ import productoPrueba from '../imagenes/producto-prueba.webp'
 import '../hojas-de-estilo/Producto.css'
 import  { Link } from 'react-router-dom'
 
+
 function Producto(props){
     return(
         <div className="contenedor-producto" >
@@ -13,12 +14,13 @@ function Producto(props){
                     <h4>{props.nombreProducto}</h4>
                     <p>{props.detallesProducto}</p>
                     <p>{props.precio}$</p>
+                    {/* <Link to={`/producto`}><button className='btn btn-info'>COMPRAR</button></Link> */}
+                    <Link to={`/${props.id}`}><button className='btn btn-info'>COMPRAR</button></Link>
                 </div>
-                <Link to={`/productos/${props.id}`}><button className='btn btn-info'>COMPRAR</button></Link>
 
         </div>
 
     )
 }
 
-export default Producto;
+export default Producto; 
