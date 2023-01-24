@@ -1,5 +1,6 @@
 import { useState } from "react"
 import '../hojas-de-estilo/Login.css'
+import { Link } from "react-router-dom"
 
 function Login(props){
     const [valores, setValor] = useState(['','']) 
@@ -9,8 +10,11 @@ function Login(props){
             <div className="username-password">
                 <form>
                     <input type="text" placeholder="Usuario"  name="usuario" />
-                    <input name="password" />
-                    <button className="boton-login">LOGIN</button>
+                    <input type="text" placeholder="Password" name="password" />
+                    <Link to="productos">
+                        <button className="boton-login">LOGIN</button>
+                    
+                    </Link>
                 </form>
 
             </div>

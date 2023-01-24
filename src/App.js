@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Carrito from './componentes/Carrito';
 import ContenedorProductos from './componentes/ContenedorProductos';
 import Header from './componentes/Header'
 import Login from './componentes/Login';
@@ -8,18 +10,29 @@ import VistaProducto from './componentes/VistaProducto';
 
 
 function App() {
-  const href = window.location.href
+  const [carrito, setCarrito] = useState(0)
+  const masCarrito = ()=>{
+    setCarrito(carrito + 1)
+    console.log(carrito);
+  }
+  const menosCarrito = ()=>{
+    if (carrito > 0){
+      setCarrito(carrito - 1)
+    }
+    console.log(carrito);
+  }
+
   return (
     <div className="App">
-      <Header/>
       <BrowserRouter>
+        <Header/>
         <Routes>
-          <Route path='/' element={<ContenedorProductos/>} />
-          <Route path={`/:id`} element={<VistaProducto/>} />
-          {/* <Route path='/login' element={<Login/>} /> */}
+          <Route path='/productos' element={<ContenedorProductos />} />
+          <Route path={`/productos/:id`} element={<VistaProducto masCarrito={masCarrito} menosCarrito={menosCarrito}/>} />
+          <Route path='/login' element={<Login/>} /> 
+          <Route path='/carrito' element={<Carrito carrito={carrito}/>}/>
         </Routes>
       </BrowserRouter>
-      {/*<ContenedorProductos/>*/}
     </div>  
   );
 }

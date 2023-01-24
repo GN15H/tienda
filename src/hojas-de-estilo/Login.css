@@ -1,9 +1,9 @@
 .login {
-    height: 75px;
+    /*height: 75px;*/
     border-radius: 50px;
     margin-bottom: 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     font-weight: bold;
     font-size: 30px;
@@ -12,4 +12,18 @@
     padding: 11px 30px 11px 11px;
     margin: 1px solid #888;
     box-shadow: -1px 4px 1px 1px white;
+  }
+
+  .username-password{
+    display: flex;
+    justify-content: center;
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+  }
+
+  form input{
+    margin: 10px;
   }

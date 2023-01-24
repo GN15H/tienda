@@ -17,8 +17,15 @@ function ContenedorProductos(props){
     
     const getProducts= async ()=>{
         const res = await axios.get(URI)
-        setBlog(res.data)
-        console.log(res.data);
+        const resImage = await axios.get(URI + 'images/')
+        let response = []
+        //console.log(res.data);
+        //console.log(images.data);
+        for (let i = 0; i< res.data.length; i++){
+            response.push({datos: res.data[i], imagen: resImage.data[i]})
+        }
+        //console.log(blogs[0].imagen);
+        setBlog(response)
     }
 
      return(
@@ -27,11 +34,12 @@ function ContenedorProductos(props){
                 {
                     blogs.map((blog) => 
                         <Producto 
-                            id={blog.id}
-                            key={blog.id}
-                            nombreProducto={blog.nombreProducto}
-                            detallesProducto={blog.descripcion}
-                            precio={blog.precio}
+                            id={blog.datos.id}
+                            key={blog.datos.id}
+                            nombreProducto={blog.datos.nombreProducto}
+                            detallesProducto={blog.datos.descripcion}
+                            precio={blog.datos.precio}
+                            imagen={blog.imagen}
                         />
                        
                     ) 
