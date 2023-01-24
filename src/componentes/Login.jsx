@@ -10,8 +10,8 @@ function Login(props){
             <div className="username-password">
                 <form>
                     <input type="text" placeholder="Usuario"  name="usuario" />
-                    <input type="text" placeholder="Password" name="password" />
-                    <Link to="productos">
+                    <input type="text" placeholder="Contraseña" name="password" />
+                    <Link className="submit-login" to="/productos">
                         <button className="boton-login">LOGIN</button>
                     
                     </Link>

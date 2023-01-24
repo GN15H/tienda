@@ -10,17 +10,18 @@ import VistaProducto from './componentes/VistaProducto';
 
 
 function App() {
-  const [carrito, setCarrito] = useState(0)
-  const masCarrito = ()=>{
-    setCarrito(carrito + 1)
-    console.log(carrito);
-  }
-  const menosCarrito = ()=>{
-    if (carrito > 0){
-      setCarrito(carrito - 1)
-    }
-    console.log(carrito);
-  }
+
+  // const [carrito, setCarrito] = useState(0)
+  // const masCarrito = ()=>{
+  //   setCarrito(carrito + 1)
+  //   console.log(carrito);
+  // }
+  // const menosCarrito = ()=>{
+  //   if (carrito > 0){
+  //     setCarrito(carrito - 1)
+  //   }
+  //   console.log(carrito);
+  // }
 
   return (
     <div className="App">
@@ -28,9 +29,9 @@ function App() {
         <Header/>
         <Routes>
           <Route path='/productos' element={<ContenedorProductos />} />
-          <Route path={`/productos/:id`} element={<VistaProducto masCarrito={masCarrito} menosCarrito={menosCarrito}/>} />
+          <Route path={`/productos/:id`} element={<VistaProducto />} />
           <Route path='/login' element={<Login/>} /> 
-          <Route path='/carrito' element={<Carrito carrito={carrito}/>}/>
+          <Route path='/carrito' element={<Carrito />}/>
         </Routes>
       </BrowserRouter>
     </div>  

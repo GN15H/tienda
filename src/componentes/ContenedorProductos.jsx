@@ -26,6 +26,7 @@ function ContenedorProductos(props){
         }
         //console.log(blogs[0].imagen);
         setBlog(response)
+        console.log(blogs);
     }
 
      return(
