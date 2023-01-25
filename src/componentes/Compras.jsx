@@ -9,8 +9,9 @@ function Compras(props){
         </div>
         <div className="compras-detalles">
             <p>Compra</p>
-            <p>{props.nombreProducto}</p>
-            <p>{props.cantidad}</p>
+            <p><b>Producto:</b> {props.nombreProducto}</p>
+            <p><b>Cantidad:</b> {props.cantidad}</p>
+            <p><b>Total:</b>  {props.precio*props.cantidad}$</p>
         </div>
     </div>
 

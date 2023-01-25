@@ -2,5 +2,33 @@
 .compras{
     border: 2px solid black;
     display: flex;
-    flex-direction: column;
+    flex-direction: wrap !important;
+}
+.compras-contenedor-imagen{
+    width: 200px;
+    display: flex;
+    margin: 20px;
+}
+
+.compras-imagen{
+    min-width: 100%;
+    height: auto;
+}
+
+.compras-detalles{
+    display: flex;
+    flex-direction: wrap;
+    margin: 25px;
+    align-items: center;
+}
+.compras-detalles p{
+    margin: 20px;
+    font-size: x-large;
+}
+@media(max-width: 1010px){
+    .compras,
+    .compras-detalles{
+        flex-direction: column;
+    }
+
 }

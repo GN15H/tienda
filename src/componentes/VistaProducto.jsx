@@ -3,7 +3,7 @@ import '../hojas-de-estilo/VistaProducto.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useLocation } from 'react-router-dom'
-import { buy, boughtObj, discard } from './Carrito'
+import { buy, boughtObj, discard, deleteBought } from './Carrito'
 
 
 
@@ -13,12 +13,12 @@ const cond = 'http://localhost:8000/productos'
 
 function VistaProducto(props){
     
-    const add = ()=>{
-        buy(blog.dato.id)
+   const add = ()=>{
+        buy(parseInt(a))
     }
 
     const less = ()=>{
-        discard(blog.dato.id)
+        deleteBought(parseInt(a))
     }
 
     const location = useLocation().pathname

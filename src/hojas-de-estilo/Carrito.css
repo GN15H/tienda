@@ -1,11 +1,15 @@
 .contenedor-contador-carrito{
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 95%;
     margin-top: 150px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border: 5px solid black;
+    margin-left: 80px;
+    margin-right: 15%;
+    /*margin-right: 50px;*/
 }
 
 .contenedor-contador-carrito-detalles{
