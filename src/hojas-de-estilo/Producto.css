@@ -34,3 +34,18 @@
     
 }
 
+.boton-comprar{
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(128, 207, 234);
+    width: fit-content;
+    height: 40px;
+    transition: 0.1s;
+}
+.boton-comprar:hover{
+    transition: 0.2s;
+    background-color: rgb(158, 217, 237);
+    transform: scale(1.15);
+    color: white;
+    
+}

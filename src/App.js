@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Carrito from './componentes/Carrito';
@@ -6,35 +6,40 @@ import ContenedorProductos from './componentes/ContenedorProductos';
 import Header from './componentes/Header'
 import Login from './componentes/Login';
 import Producto from './componentes/Producto';
+import Register from './componentes/Register';
 import VistaProducto from './componentes/VistaProducto';
+import UserContext from './context/UserContext';
 
 
 function App() {
+  const setGlobal = (value) =>{
+    setIsAuth(value)
+  }
 
-  // const [carrito, setCarrito] = useState(0)
-  // const masCarrito = ()=>{
-  //   setCarrito(carrito + 1)
-  //   console.log(carrito);
-  // }
-  // const menosCarrito = ()=>{
-  //   if (carrito > 0){
-  //     setCarrito(carrito - 1)
-  //   }
-  //   console.log(carrito);
-  // }
+  const [isAuth, setIsAuth] = useState(false);
+  useEffect(()=>{
+    let auth = localStorage.getItem('auth') || false;
+    setIsAuth(auth)
+  }, [isAuth])
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Header/>
-        <Routes>
-          <Route path='/productos' element={<ContenedorProductos />} />
-          <Route path={`/productos/:id`} element={<VistaProducto />} />
-          <Route path='/login' element={<Login/>} /> 
-          <Route path='/carrito' element={<Carrito />}/>
-        </Routes>
-      </BrowserRouter>
-    </div>  
+    <UserContext.Provider value={{ auth: isAuth, username: localStorage.getItem('username')}}>
+
+      <div className="App">
+        <BrowserRouter>
+          <Header setGlobal={setGlobal}/>
+          <Routes>
+            <Route path='/productos' element={<ContenedorProductos />} />
+            <Route path={`/productos/:id`} element={<VistaProducto />} />
+            <Route path='/login' element={<Login setGlobal={setGlobal}/>} /> 
+            <Route path='/register' element={<Register setGlobal={setGlobal}/>} /> 
+            <Route path='/carrito' element={<Carrito />}/>
+          </Routes>
+        </BrowserRouter>
+      </div>  
+
+    </UserContext.Provider>
+
   );
 }
 

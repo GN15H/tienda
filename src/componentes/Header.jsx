@@ -3,8 +3,11 @@ import amazonLogo from '../imagenes/amazon-logo.png'
 import carrito from '../imagenes/carrito.webp'
 import '../hojas-de-estilo/Header.css'
 import { Link } from "react-router-dom";
+import LoginRegisterProfile from "./LoginRegisterProfile";
 
-function Header(){
+function Header({setGlobal}){
+    
+
     return(
         <div className="header">
             <Link className="link-productos" to={'/productos'}>
@@ -12,11 +15,17 @@ function Header(){
                     <img className="imagen-logo" src={amazonLogo} alt="Logo"></img>
                 </div>
             </Link>
-            <Link className="link-carrito" to={'/carrito'}>
-                <div className="contenedor-carrito">
-                    <img className="imagen-carrito" src={carrito}></img>
-                </div>
-            </Link>
+            <div className="contenedor-links">
+                <LoginRegisterProfile setGlobal={setGlobal} className="contenedor-links"/>
+             
+                <Link className="link-carrito" to={'/carrito'}>
+                    <div className="contenedor-carrito">
+                        <img className="imagen-carrito" src={carrito}></img>
+                    </div>
+                </Link>
+
+            </div>
+
         </div>
     
     )

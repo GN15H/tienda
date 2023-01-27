@@ -2,6 +2,7 @@
     width: 100%;
     height: 80px;
     display: flex;
+    flex: row;
     justify-content: center;
     background-color: #280d47;
     padding: 10px;
@@ -21,8 +22,8 @@
 
 .link-carrito{
     display: flex;
-    margin-left: 70%;
 }
+
 
 
 .link-productos{
@@ -41,4 +42,80 @@
     padding: 5px;
     background-color: #4b2577;
     border-radius: 5px;
+    transition: 0.2s;
+}
+
+.contenedor-carrito:hover{
+    transition: 0.2s;
+    background-color: #653b94;
+}
+
+.link-login{
+    display: flex;
+    width: 80px;
+    /* border: 2px solid black; */
+    color: black;
+    background-color: rgb(196, 213, 228);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+    right: 0px;
+    text-decoration: none;
+    transition: 0.2s;
+    margin: 10px;
+}
+
+.contenedor-links{
+    display: flex;
+    flex-direction: row;
+    float: right;
+    margin-left: 70%;
+
+}
+
+.contenedor-links1{
+    display: flex;
+
+}
+.link-logout{
+    display: flex;
+    color: black;
+    background-color: rgb(196, 213, 228);
+    border: 0px solid black;
+    width: 100px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+    right: 0px;
+    text-decoration: none;
+    transition: 0.2s;
+    margin: 10px;
+}
+
+
+
+.link-register ,  .link-profile{
+    display: flex;
+    color: black;
+    background-color: rgb(196, 213, 228);
+    /* border: 2px solid black; */
+    width: 100px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+    right: 0px;
+    text-decoration: none;
+    transition: 0.2s;
+    margin: 10px;
+}
+
+.link-login:hover, .link-register:hover, .link-logout:hover, .link-profile:hover{
+    transition: 0.2s;
+    transform: scale(1.1);
+    color: rgb(95, 94, 151);
+    background-color: aliceblue;
+    box-shadow: 1px 1px 1px rgb(229, 216, 216);
 }

@@ -12,6 +12,8 @@ import { buy, boughtObj, discard, deleteBought } from './Carrito'
 const cond = 'http://localhost:8000/productos'
 
 function VistaProducto(props){
+
+    
     
    const add = ()=>{
         buy(parseInt(a))
