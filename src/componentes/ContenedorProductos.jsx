@@ -10,6 +10,8 @@ const URI = 'http://localhost:8000/productos/'
 
 function ContenedorProductos(props){
 
+    const a = 'comprar'
+
     const [blogs, setBlog] = useState([])
     useEffect( ()=>{
         getProducts()
@@ -41,6 +43,7 @@ function ContenedorProductos(props){
                             detallesProducto={blog.datos.descripcion}
                             precio={blog.datos.precio}
                             imagen={blog.imagen}
+                            accion={a}
                         />
                        
                     ) 

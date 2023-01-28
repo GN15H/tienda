@@ -18,13 +18,14 @@ function Login({ setGlobal }){
             [name]: value
         })
     }
-    const onSubmit = (e)=>{
+    const onSubmit = async (e)=>{
         e.preventDefault();
-        axios.post(URI + 'users', body)
+        await axios.post(URI + 'users', body)
         .then(({data}) =>{
             if (typeof data !== 'string'){
                 localStorage.setItem('auth', true)
                 localStorage.setItem('username', data.username)
+                localStorage.setItem('isAdmin', data.isAdmin)
                 setGlobal(true)
                 setAuth(true)
             }

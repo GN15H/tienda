@@ -1,9 +1,10 @@
 import productoPrueba from '../imagenes/producto-prueba.webp'
 import '../hojas-de-estilo/VistaProducto.css'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Navigate, useLocation } from 'react-router-dom'
 import { buy, boughtObj, discard, deleteBought } from './Carrito'
+import useUser from '../hooks/useUser'
 
 
 
@@ -11,55 +12,59 @@ import { buy, boughtObj, discard, deleteBought } from './Carrito'
 
 const cond = 'http://localhost:8000/productos'
 
-function VistaProducto(props){
+function VistaProducto(props) {
 
-    
-    
-   const add = ()=>{
+    const user = useUser()
+    const add = () => {
         buy(parseInt(a))
     }
 
-    const less = ()=>{
+    const less = () => {
         deleteBought(parseInt(a))
     }
 
     const location = useLocation().pathname
-   
+
     const dato = location.length - 1
     //console.log(cond + location[dato])
     let a = ''
 
-    let b= ''
+    let b = ''
 
-    function id (contador, b){
-        if (contador>= 0){
-            if (location[contador] == '/'){
+    function id(contador, b) {
+        if (contador >= 0) {
+            if (location[contador] == '/') {
                 a = b
-            }else{
+            } else {
                 //console.log( location[contador] + b);
-                id(contador-1, location[contador] + b)
+                id(contador - 1, location[contador] + b)
             }
         }
     }
-    id(dato,'')
+    id(dato, '')
 
 
-    const [blog, setBlog] =useState({dato: '', imagen: ''})
-    useEffect( ()=>{
+    const [blog, setBlog] = useState({ dato: '', imagen: '' })
+    useEffect(() => {
         getProductList()
     }, [])
 
-    const getProductList = async ()=>{
+    const getProductList = async () => {
         const res = await axios.get(cond + '/' + a)
         const resImage = await axios.get(cond + '/' + 'images/')
         b = resImage.data
-        setBlog({dato: res.data, imagen: b[a-1]})
+        setBlog({ dato: res.data, imagen: b[a - 1] })
         //console.log(res.data);
     }
-    console.log(b[a-1]);
+    console.log(b[a - 1]);
 
 
-    return(
+
+    if (!user.auth) {
+        return <Navigate to={'/login'} />
+    }
+
+    return (
         <div className='contenedor-general'>
 
             <div className="contenedor-vista-producto">

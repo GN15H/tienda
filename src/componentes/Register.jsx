@@ -26,6 +26,7 @@ function Register({setGlobal}){
 
                 localStorage.setItem('auth', true)
                 localStorage.setItem('username', body.username)
+                localStorage.setItem('isAdmin', false)
                 setGlobal(true)
                 setAuth(true)   
         })

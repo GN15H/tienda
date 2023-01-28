@@ -18,11 +18,7 @@ function Header({setGlobal}){
             <div className="contenedor-links">
                 <LoginRegisterProfile setGlobal={setGlobal} className="contenedor-links"/>
              
-                <Link className="link-carrito" to={'/carrito'}>
-                    <div className="contenedor-carrito">
-                        <img className="imagen-carrito" src={carrito}></img>
-                    </div>
-                </Link>
+                
 
             </div>
 

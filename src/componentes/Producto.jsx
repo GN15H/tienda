@@ -4,6 +4,11 @@ import  { Link } from 'react-router-dom'
 
 
 function Producto(props){
+    
+    const esAdmin = localStorage.getItem('isAdmin')
+    const auth = localStorage.getItem('auth')
+    console.log(auth);
+    
    
     return(
         <div className="contenedor-producto" >
@@ -16,7 +21,7 @@ function Producto(props){
                     <p>{props.detallesProducto}</p>
                     <p>{props.precio}$</p>
                     {/* <Link to={`/producto`}><button className='btn btn-info'>COMPRAR</button></Link> */}
-                    <Link to={`/productos/${props.id}`}><button className='boton-comprar'>COMPRAR</button></Link>
+                    <Link to={`/${esAdmin == 'true' ? 'editar': 'productos'}/${props.id}`}><button className='boton-comprar'>{esAdmin == 'true' ? 'EDITAR': 'COMPRAR'}</button></Link>
                 </div>
 
         </div>

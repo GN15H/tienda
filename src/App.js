@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Carrito from './componentes/Carrito';
 import ContenedorProductos from './componentes/ContenedorProductos';
+import Editar from './componentes/Editar';
 import Header from './componentes/Header'
 import Login from './componentes/Login';
 import Producto from './componentes/Producto';
@@ -23,7 +24,7 @@ function App() {
   }, [isAuth])
 
   return (
-    <UserContext.Provider value={{ auth: isAuth, username: localStorage.getItem('username')}}>
+    <UserContext.Provider value={{ auth: isAuth, username: localStorage.getItem('username'), isAdmin: localStorage.getItem('isAdmin')}}>
 
       <div className="App">
         <BrowserRouter>
@@ -34,6 +35,7 @@ function App() {
             <Route path='/login' element={<Login setGlobal={setGlobal}/>} /> 
             <Route path='/register' element={<Register setGlobal={setGlobal}/>} /> 
             <Route path='/carrito' element={<Carrito />}/>
+            <Route path='/editar/:id' element={<Editar/>}/>
           </Routes>
         </BrowserRouter>
       </div>  

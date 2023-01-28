@@ -4,21 +4,7 @@ import axios from 'axios'
 import Compras from './Compras'
 
 const URI = 'http://localhost:8000/productos/'
-/*
-export let boughtObj= [1,0,0,0,0,0,0,0,0,0]
 
-export const buy = (id)=>{
-    boughtObj[id-1] ++
-    console.log(boughtObj);
-}
-
-export const discard = (id)=>{
-    if (boughtObj[id-1]>0){
-        boughtObj[id-1] --
-    }
-    console.log(boughtObj);
-}
-*/
 
  export let boughtObj = {};
 
@@ -46,25 +32,6 @@ export const deleteBought = id => {
 function Carrito(){
     
     
-    // const [prods, setProd] = useState([])
-    // useEffect( ()=>{
-    //     getProds()
-    // }, [])
-    
-    // const getProds= async ()=>{
-    //     const res = await axios.get(URI)
-    //     const resImage = await axios.get(URI + 'images/')
-    //     //console.log(res.data);
-    //     //console.log(images.data);
-    //     for (let i = 0; i< res.data.length; i++){
-    //         response.push({datos: res.data[i], imagen: resImage.data[i]})
-    //     }
-    //     let response = []
-    //     //console.log(blogs[0].imagen);
-    //     setProd(response)
-    //     //console.log(response);
-    // }
-    // //console.log(response[0].datos);
 
     const [prods, setProd] = useState([]);
     useEffect(() => {

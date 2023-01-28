@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useUser from "../hooks/useUser";
+import carrito from '../imagenes/carrito.webp'
+
 
 function LoginRegisterProfile({setGlobal}) {
    const user = useUser();
@@ -10,6 +12,7 @@ function LoginRegisterProfile({setGlobal}) {
     setGlobal(false)
     localStorage.removeItem('auth')
     localStorage.removeItem('username')
+    localStorage.removeItem('isAdmin')
    }
 
     if (!user.auth) {
@@ -34,6 +37,11 @@ function LoginRegisterProfile({setGlobal}) {
                     PERFIL
                 </Link>
                 <button onClick={logout} className="link-logout">LOGOUT</button>
+                <Link className="link-carrito" to={'/carrito'}>
+                    <div className="contenedor-carrito">
+                        <img className="imagen-carrito" src={carrito}></img>
+                    </div>
+                </Link>
             </div>
         )
     }

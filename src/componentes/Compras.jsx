@@ -1,4 +1,6 @@
 import '../hojas-de-estilo/Compras.css'
+import { buy, boughtObj, discard, deleteBought } from './Carrito'
+
 
 function Compras(props){
     return(
