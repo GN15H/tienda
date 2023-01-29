@@ -5,6 +5,7 @@ import Compras from './Compras'
 import useUser from "../hooks/useUser"
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import useCart from "../hooks/useCart"
+import BotonComprar from "./BotonComprar"
 
 const URI = 'http://localhost:8000/productos/'
 
@@ -60,6 +61,7 @@ function Carrito() {
         return <Navigate to={'/login'} />
     }
 
+
     return (
         <div className="contenedor-contador-carrito">
             <div className="contenedor-contador-carrito-detalles">
@@ -77,11 +79,15 @@ function Carrito() {
                             imagen={product.imagen}
                             handleBuy={buy}
                             handleDelete={deleteBought}
+                            objList={prods}
                         />
 
                     )
                 }
             </div>
+            <BotonComprar 
+                objList={prods}
+             />
         </div>
     )
 }

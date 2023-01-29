@@ -1,17 +1,26 @@
 import '../hojas-de-estilo/Compras.css'
 import { buy, boughtObj, discard, deleteBought } from './Carrito'
 import useUser from '../hooks/useUser'
+import useCart from '../hooks/useCart'
 
 
 function Compras(props){
+    const cart = useCart()
     
     const add = ()=>{
+      /*   if (cart.boughtObj[props.id] < props.objList[props.id -1].info.stock){
+            props.handleBuy(props.id)
+        }else{
+            alert('Stock insuficiente')
+        } */
         props.handleBuy(props.id)
+        console.log(props.objList);
     }
     const less = ()=>{
         props.handleDelete(props.id)
     }
 
+ 
 
     return(
 

@@ -1,0 +1,27 @@
+.contenedor-boton-comprar-total{
+    height: 90px;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-comprar-total{
+    height: 50px;
+    width: 110px;
+    padding: 8px;
+    font-size: larger;
+    border-radius: 20px;
+    background-color: rgb(84, 179, 171);
+    border: 0px;
+    transition:0.2s;
+}
+
+.boton-comprar-total:hover{
+    transition: 0.2s;
+    transform: scale(1.3);
+    font-weight: bold;
+    color: white;
+    background-color: rgb(133, 204, 204);
+}

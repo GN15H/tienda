@@ -33,12 +33,15 @@ function VistaProducto(props) {
     id(dato, '')
 
     const handleClick = () =>{
+        
+
         if (cart.boughtObj.hasOwnProperty(a)){
             cart.boughtObj[a]++
         }else{
             cart.boughtObj[a] = 1
         }
         cart.setBoughtObj({...cart.boughtObj})
+
     }
 
 
@@ -54,9 +57,8 @@ function VistaProducto(props) {
         setBlog({ dato: res.data, imagen: b[a - 1] })
         //console.log(res.data);
     }
-    //console.log(b[a - 1]);
 
-
+    console.log(blog.dato);
 
     if (!user.auth) {
         return <Navigate to={'/login'} />
