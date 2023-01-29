@@ -25,6 +25,45 @@
     margin: 20px;
     font-size: x-large;
 }
+
+/****/
+
+.boton-mas1, .boton-menos1{
+    margin: 5px;
+    padding-bottom: 5px;
+    width: 60px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid;
+    font-size: 150% !important;
+}
+
+
+.boton-mas1{
+    background-color: rgb(78, 115, 184);
+    color: white;
+}
+.boton-mas1:hover{
+    background-color: rgb(93, 131, 202);
+
+}
+
+.boton-menos1{
+    background-color: rgb(175, 37, 37);
+    color: white;
+}
+.boton-menos1:hover{
+    background-color: rgb(194, 65, 65);
+
+}
+
+
+/***/
+
+
+
 @media(max-width: 1010px){
     .compras,
     .compras-detalles{

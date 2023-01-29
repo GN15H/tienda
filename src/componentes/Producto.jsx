@@ -6,8 +6,8 @@ import  { Link } from 'react-router-dom'
 function Producto(props){
     
     const esAdmin = localStorage.getItem('isAdmin')
-    const auth = localStorage.getItem('auth')
-    console.log(auth);
+    //const auth = localStorage.getItem('auth')
+    //console.log(auth);
     
    
     return(

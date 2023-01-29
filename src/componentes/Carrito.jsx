@@ -2,73 +2,83 @@ import { useState, useEffect } from "react"
 import '../hojas-de-estilo/Carrito.css'
 import axios from 'axios'
 import Compras from './Compras'
+import useUser from "../hooks/useUser"
+import { Link, Navigate, useLocation } from 'react-router-dom'
+import useCart from "../hooks/useCart"
 
 const URI = 'http://localhost:8000/productos/'
 
 
- export let boughtObj = {};
 
- export const buy = id => {
-    if (boughtObj.hasOwnProperty(id)) {
-        boughtObj[id]++;
-    } else {
-        boughtObj[id] = 1;
+
+
+
+
+function Carrito() {
+
+    const cart = useCart()
+    const user = useUser()
+
+    const buy = id => {
+        if (cart.boughtObj.hasOwnProperty(id)) {
+            cart.boughtObj[id]++;
+        } else {
+            cart.boughtObj[id] = 1;
+        }
+        cart.setBoughtObj({...cart.boughtObj})
     }
-   return boughtObj;
-}
-
-export const deleteBought = id => {
-    if (boughtObj[id] >= 0){
-        boughtObj[id]--;
-    }
-    if (boughtObj[id] == 0) {
-        delete boughtObj[id];
-    }
-    return boughtObj;
-}
-
-
-
-function Carrito(){
     
+     const deleteBought = id => {
+        if (cart.boughtObj[id] >= 0) {
+            cart.boughtObj[id]--;
+        }
+        if (cart.boughtObj[id] == 0) {
+            delete cart.boughtObj[id];
+        }
+        cart.setBoughtObj({...cart.boughtObj})
+    }
     
 
     const [prods, setProd] = useState([]);
     useEffect(() => {
         getProds()
-    }, []);
+    }, [cart]);
 
-    const getProds = async ()=> {
+    const getProds = async () => {
         const res = await axios.get(URI)
         const resImage = await axios.get(URI + 'images/')
         let response = []
-        for (let i= 0; i < res.data.length; i++){
-            response.push({ info: res.data[i], imagen: resImage.data[i]})
+        for (let i = 0; i < res.data.length; i++) {
+            response.push({ info: res.data[i], imagen: resImage.data[i] })
         }
         const bought = []
-        Object.keys(boughtObj).map(id => bought.push(response[id-1]))
-        console.log(bought);
+        Object.keys(cart.boughtObj).map(id => bought.push(response[id - 1]))
         setProd(bought)
     }
 
+    if (!user.auth) {
+        return <Navigate to={'/login'} />
+    }
 
-    return(
+    return (
         <div className="contenedor-contador-carrito">
             <div className="contenedor-contador-carrito-detalles">
                 <h3>CANTIDAD DE PRODUCTOS:</h3>
             </div>
             <div className="contenedor-compras">
                 {
-                    prods.map((product,index)=>
+                    prods.map((product, index) =>
                         <Compras
-                        key={index}
-                        id={product.info.name}
-                        nombreProducto={product.info.nombreProducto}
-                        precio={product.info.precio}
-                        cantidad={boughtObj[product.info.id]}
-                        imagen={product.imagen}
+                            key={index}
+                            id={product.info.id}
+                            nombreProducto={product.info.nombreProducto}
+                            precio={product.info.precio}
+                            cantidad={cart.boughtObj[product.info.id]}
+                            imagen={product.imagen}
+                            handleBuy={buy}
+                            handleDelete={deleteBought}
                         />
-                       
+
                     )
                 }
             </div>

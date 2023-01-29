@@ -31,7 +31,7 @@ function Editar() {
     id(dato,'')
 
     
-    const [body, setBody] = useState({nombreProducto: null, descripcion:null, precio:null, stock: 0})
+    const [body, setBody] = useState({nombreProducto: null, descripcion:null, precio:null, stock: null, minStock:null, maxStock:null})
      
     const inputChange = ({target})=>{
         const {name, value} = target
@@ -46,10 +46,10 @@ function Editar() {
         e.preventDefault();
         await axios.put(URI + a, body)
         .then(({data}) =>{
-            console.log(data);
+            alert('Registro actualizado exitosamente')
         })
         .catch(({response})=>{
-            //console.log(response.data);
+            alert(response.message)
         })
     }
 
@@ -64,6 +64,8 @@ function Editar() {
                     <input type="text" placeholder="Descripcion del Producto" name="descripcion" value={body.descripcion} onChange={inputChange}/>
                     <input type="text" placeholder="Precio del Producto" name="precio" value={body.precio} onChange={inputChange}/>
                     <input type="text" placeholder="Stock del Producto" name="stock" value={body.stock} onChange={inputChange}/>
+                    <input type="text" placeholder="Stock mínimo del Producto" name="minStock" value={body.minStock} onChange={inputChange}/>
+                    <input type="text" placeholder="Stock máximo del Producto" name="maxStock" value={body.maxStock} onChange={inputChange}/>
                     <Link to="/productos" className="submit-login" >
                         <button className="boton-login" onClick={onSubmit}>EDITAR</button>
 
