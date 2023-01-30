@@ -75,7 +75,8 @@ function Editar() {
             </div>
             <div className="contenedor-boton-login">
             </div>
-        </div>)
+        </div>
+        )
 }
 
 export default Editar;

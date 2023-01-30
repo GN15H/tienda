@@ -6,6 +6,7 @@ import ContenedorProductos from './componentes/ContenedorProductos';
 import Editar from './componentes/Editar';
 import Header from './componentes/Header'
 import Login from './componentes/Login';
+import PerfilAdmin from './componentes/PerfilAdmin';
 import Producto from './componentes/Producto';
 import Register from './componentes/Register';
 import VistaProducto from './componentes/VistaProducto';
@@ -44,6 +45,7 @@ function App() {
               <Route path='/register' element={<Register setGlobal={setGlobal} />} />
               <Route path='/carrito' element={<Carrito />} />
               <Route path='/editar/:id' element={<Editar />} />
+              <Route path='/perfiladmin' element={<PerfilAdmin/>} />
             </Routes>
           </BrowserRouter>
         </div>

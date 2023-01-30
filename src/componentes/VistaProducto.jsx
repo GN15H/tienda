@@ -32,16 +32,18 @@ function VistaProducto(props) {
     }
     id(dato, '')
 
-    const handleClick = () =>{
-        
-
-        if (cart.boughtObj.hasOwnProperty(a)){
-            cart.boughtObj[a]++
-        }else{
-            cart.boughtObj[a] = 1
-        }
-        cart.setBoughtObj({...cart.boughtObj})
-
+    const handleClick = async () =>{
+        const res = await axios.get(cond + '/book/' + a + '?f=book')
+        if (res.data === 'Booked'){
+            if (cart.boughtObj.hasOwnProperty(a)){
+                cart.boughtObj[a]++
+            }else{
+                cart.boughtObj[a] = 1
+            }
+            cart.setBoughtObj({...cart.boughtObj})
+        }else if (res.data === 'Stockout'){
+            return alert('Item out of stock')
+        }       
     }
 
 
@@ -52,13 +54,11 @@ function VistaProducto(props) {
 
     const getProductList = async () => {
         const res = await axios.get(cond + '/' + a)
-        const resImage = await axios.get(cond + '/' + 'images/')
+        const resImage = await axios.get(cond + '/images/' + a)
         b = resImage.data
-        setBlog({ dato: res.data, imagen: b[a - 1] })
-        //console.log(res.data);
+        setBlog({ dato: res.data, imagen: b })
     }
 
-    console.log(blog.dato);
 
     if (!user.auth) {
         return <Navigate to={'/login'} />
@@ -69,9 +69,9 @@ function VistaProducto(props) {
 
             <div className="contenedor-vista-producto">
                 <div className="contenedor-vista-producto-imagenes">
-                    <img src={blog.imagen}></img>
-                    <img src={blog.imagen}></img>
-                    <img src={blog.imagen}></img>
+                    <img src={blog.imagen.imagen1}></img>
+                    <img src={blog.imagen.imagen2}></img>
+                    <img src={blog.imagen.imagen3}></img>
                 </div>
                 <div className="contenedor-vista-producto-detalles">
                     <div className="detalles">

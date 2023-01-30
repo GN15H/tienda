@@ -13,6 +13,7 @@ function LoginRegisterProfile({setGlobal}) {
     localStorage.removeItem('auth')
     localStorage.removeItem('username')
     localStorage.removeItem('isAdmin')
+    window.location.href = '/productos';
    }
 
     if (!user.auth) {
@@ -33,7 +34,7 @@ function LoginRegisterProfile({setGlobal}) {
     }else{
         return(
             <div className="contenedor-links1">
-                <Link className="link-profile">
+                <Link className="link-profile" to="/perfiladmin">
                     PERFIL
                 </Link>
                 <button onClick={logout} className="link-logout">LOGOUT</button>

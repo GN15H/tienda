@@ -2,21 +2,26 @@ import '../hojas-de-estilo/Compras.css'
 import { buy, boughtObj, discard, deleteBought } from './Carrito'
 import useUser from '../hooks/useUser'
 import useCart from '../hooks/useCart'
+import axios from 'axios'
 
+const cond = 'http://localhost:8000/productos'
 
 function Compras(props){
     const cart = useCart()
     
-    const add = ()=>{
-      /*   if (cart.boughtObj[props.id] < props.objList[props.id -1].info.stock){
+    const add = async ()=>{
+        const res = await axios.get(cond + '/book/' + props.id + '?f=book')
+        if (res.data === 'Booked'){
             props.handleBuy(props.id)
-        }else{
-            alert('Stock insuficiente')
-        } */
-        props.handleBuy(props.id)
-        console.log(props.objList);
+            //console.log(props.objList);
+        }else if(res.data === 'Stockout'){
+            return alert('Item out of stock')
+        }
+
     }
-    const less = ()=>{
+    const less = async()=>{
+        const res = await axios.get(cond + '/book/' + props.id + '?f=unbook')
+
         props.handleDelete(props.id)
     }
 

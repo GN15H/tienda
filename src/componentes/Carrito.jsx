@@ -61,7 +61,8 @@ function Carrito() {
         return <Navigate to={'/login'} />
     }
 
-
+    let total = 0
+    
     return (
         <div className="contenedor-contador-carrito">
             <div className="contenedor-contador-carrito-detalles">
@@ -70,23 +71,30 @@ function Carrito() {
             <div className="contenedor-compras">
                 {
                     prods.map((product, index) =>
-                        <Compras
-                            key={index}
-                            id={product.info.id}
-                            nombreProducto={product.info.nombreProducto}
-                            precio={product.info.precio}
-                            cantidad={cart.boughtObj[product.info.id]}
-                            imagen={product.imagen}
-                            handleBuy={buy}
-                            handleDelete={deleteBought}
-                            objList={prods}
-                        />
+                        {total = total + product.info.precio*cart.boughtObj[product.info.id]
+                          return(  
+                            <Compras
+                                key={index}
+                                id={product.info.id}
+                                nombreProducto={product.info.nombreProducto}
+                                precio={product.info.precio}
+                                cantidad={cart.boughtObj[product.info.id]}
+                                imagen={product.imagen}
+                                handleBuy={buy}
+                                handleDelete={deleteBought}
+                                objList={prods}
+                            />
+                          )
+
+                        }
 
                     )
                 }
             </div>
+
             <BotonComprar 
                 objList={prods}
+                total={total}
              />
         </div>
     )
