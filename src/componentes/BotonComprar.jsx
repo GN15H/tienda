@@ -8,6 +8,7 @@ function BotonComprar({objList, total}) {
     const cart = useCart();
 
     //Function that allows buying by a cycle that makes update petitions to the DB
+
     const Checkout = async (e) =>{
         e.preventDefault();
         for(let i=0;i<Object.keys(cart.boughtObj).length; i++){
@@ -36,4 +37,6 @@ function BotonComprar({objList, total}) {
 
 }
 
+
 export default BotonComprar;
+
