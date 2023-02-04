@@ -5,9 +5,9 @@ import carrito from '../imagenes/carrito.webp'
 
 
 function LoginRegisterProfile({setGlobal}) {
-   const user = useUser();
+   const user = useUser();//obtiene el contexto global del usuario
 
-   const logout = (e)=>{
+   const logout = (e)=>{//funcion que cambia la autentificacion y quita datos del localstorage
     e.preventDefault()
     setGlobal(false)
     localStorage.removeItem('auth')
@@ -16,7 +16,7 @@ function LoginRegisterProfile({setGlobal}) {
     window.location.href = '/productos';
    }
 
-    if (!user.auth) {
+    if (!user.auth) { //muestra el login y register en caso de no estar autentificado
         return (
             <div className="contenedor-links1">
                 <Link className="link-login" to="/login">
@@ -31,7 +31,7 @@ function LoginRegisterProfile({setGlobal}) {
                 </Link>
             </div>
         )
-    }else{
+    }else{//muestra el perfil y el carrito en caso de estar autentificado
         return(
             <div className="contenedor-links1">
                 <Link className="link-profile" to="/perfiladmin">

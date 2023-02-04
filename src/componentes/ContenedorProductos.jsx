@@ -18,23 +18,23 @@ function ContenedorProductos(props){
     }, [])
     
     const getProducts= async ()=>{
-        const res = await axios.get(URI)
-        const resImage = await axios.get(URI + 'images/')
-        let response = []
+        const res = await axios.get(URI)//obtiene todos los productos
+        const resImage = await axios.get(URI + 'images/') //obtiene todas las imagenes
+        let response = [] //arreglo que contieene productos
         //console.log(res.data);
         //console.log(images.data);
-        for (let i = 0; i< res.data.length; i++){
+        for (let i = 0; i< res.data.length; i++){ //junta en un arreglo los productos e imagnes
             response.push({datos: res.data[i], imagen: resImage.data[i]})
         }
         //console.log(blogs[0].imagen);
         setBlog(response)
         console.log(blogs);
     }
-
+    //div que mapea el arreglo de productos 
      return(
         <>
             <div className="contenedor-lista-productos">
-                {
+                {   //mapeo del arreglo
                     blogs.map((blog) => 
                         <Producto 
                             id={blog.datos.id}

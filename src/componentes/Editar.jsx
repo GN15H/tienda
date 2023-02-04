@@ -9,7 +9,7 @@ const URI = 'http://localhost:8000/productos/'
 
 
 function Editar() {
-
+    //obtiene el path de la url
     const location = useLocation().pathname
    
     const dato = location.length - 1
@@ -18,6 +18,7 @@ function Editar() {
 
     let b= ''
 
+    //obtiene el id mediante la url
     function id (contador, b){
         if (contador>= 0){
             if (location[contador] == '/'){
@@ -32,8 +33,9 @@ function Editar() {
 
     
     const [body, setBody] = useState({nombreProducto: null, descripcion:null, precio:null, stock: null, minStock:null, maxStock:null})
-     
-    const inputChange = ({target})=>{
+    //crea una variable para almacenar los nuevos datos del producto 
+
+    const inputChange = ({target})=>{ //funcion que actualiza el valor de body cuando se escribe en los formularios
         const {name, value} = target
         setBody({
             ...body,
@@ -41,7 +43,7 @@ function Editar() {
         })
         console.log(body);
     }
-    const onSubmit = async (e)=>{
+    const onSubmit = async (e)=>{ //funcion que genera peticion tipo put para actualizar un productos
         console.log('Editar');
         e.preventDefault();
         await axios.put(URI + a, body)

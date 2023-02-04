@@ -7,11 +7,11 @@ const URI = 'http://localhost:8000/productos/edit/1'
 
 
 function PerfilAdmin(){
-    const user = useUser();
+    const user = useUser();//obtiene los datos del admin
 
-    const [body, setBody] = useState({username: '', password:'', email: '', address:'', phone:undefined})
+    const [body, setBody] = useState({username: '', password:'', email: '', address:'', phone:undefined})//crea y setea un body para actualizar el admin
 
-    const inputChange = ({target})=>{
+    const inputChange = ({target})=>{//actualiza el valor del body cada vez cambia el input de formulario
         const {name, value} = target
         setBody({
             ...body,
@@ -19,12 +19,12 @@ function PerfilAdmin(){
         })
     }
 
-    const onSubmit = async (e)=>{
+    const onSubmit = async (e)=>{//function que manda petición para actualizar el perfil del admin
         //console.log('Editar');
         e.preventDefault();
         await axios.put(URI, body)
         .then(({data}) =>{
-            alert('Registro actualizado exitosamente')
+            alert('Registro actualizado exitosamente')//avisa en caso de exito
         })
         .catch(({response})=>{
             alert(response.message)
@@ -32,11 +32,11 @@ function PerfilAdmin(){
     }
 
     
-    if (user.isAdmin === 'false'){
+    if (user.isAdmin === 'false'){//verifica si es admin, si no lo redirecciona hacia los productos
         return <Navigate to="/productos" />
     }
 
-
+    //form que tiene todos los inputs para actualizar el perfil del admin
     return (
         <div className="login">
             <div className="username-password">

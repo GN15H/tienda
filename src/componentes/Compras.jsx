@@ -7,9 +7,9 @@ import axios from 'axios'
 const cond = 'http://localhost:8000/productos'
 
 function Compras(props){
-    const cart = useCart()
+    const cart = useCart()//obtiene la información del carro
     
-    const add = async ()=>{
+    const add = async ()=>{ //crea una reserva de un producto en el servidor
         const res = await axios.get(cond + '/book/' + props.id + '?f=book')
         if (res.data === 'Booked'){
             props.handleBuy(props.id)
@@ -19,14 +19,14 @@ function Compras(props){
         }
 
     }
-    const less = async()=>{
+    const less = async()=>{ //quita de la reserva de un producto en e servidor
         const res = await axios.get(cond + '/book/' + props.id + '?f=unbook')
 
         props.handleDelete(props.id)
     }
 
  
-
+    //div que contiene los datos del producto y su cantidad reservada
     return(
 
     <div className="compras">

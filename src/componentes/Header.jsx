@@ -7,6 +7,8 @@ import LoginRegisterProfile from "./LoginRegisterProfile";
 
 function Header({setGlobal}){
     
+    //div que muestra, dependiendo de la autentiiación ciertos componentes
+    //header
 
     return(
         <div className="header">

@@ -7,22 +7,22 @@ const URI = 'http://localhost:8000/productos/'
 
 function Login({ setGlobal }){
 
-    const [auth, setAuth] = useState(false)
+    const [auth, setAuth] = useState(false) //cambia el estado del auth dependiendo si esta registrado o no
 
-    const [body, setBody] = useState({username: '', password:''}) 
+    const [body, setBody] = useState({username: '', password:''}) //cambia el valor del body por el valor delos inputs 
 
-    const inputChange = ({target})=>{
+    const inputChange = ({target})=>{ //funcion que se ejecuta cuando hay algun cambio en un formulario
         const {name, value} = target
         setBody({
             ...body,
             [name]: value
         })
     }
-    const onSubmit = async (e)=>{
+    const onSubmit = async (e)=>{ //función que genera petición y retorna verificación si el usuario existe
         e.preventDefault();
         await axios.post(URI + 'users', body)
         .then(({data}) =>{
-            if (typeof data !== 'string'){
+            if (typeof data !== 'string'){//en caso de ser peticion con respuesta exitosa, autentifica el usuario
                 localStorage.setItem('auth', true)
                 localStorage.setItem('username', data.username)
                 localStorage.setItem('isAdmin', data.isAdmin)
@@ -34,10 +34,11 @@ function Login({ setGlobal }){
             //console.log(response.data);
         })
     }
-    if (auth){
+    if (auth){//en caso de ser autentificado, es redireccionado hacia productos
         return <Navigate to='/productos' />
     }
-
+    
+    //contenedor que tiene el formulario que va a tener los datos del login
     return(
         <div className="login">
             <div className="username-password">

@@ -4,18 +4,19 @@ import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Payment from "./Payment";
+//Componente que contiene el boton de comprar
 
 const URI = 'http://localhost:8000/productos/'
 
 const StripePromesing = loadStripe('pk_test_51MWqvEH14MvRoLxV0ls6y6bbsLJsiRwd6aWUbvRfwZgMRWCL3pcKd5YtvFLh8ufk6so1AnVE1JjunhYRbx7dnyRC00IB2DhJIq')
-
+//se carga la clave publica del checkout
 
 function BotonComprar({objList, total}) {
 
-    const cart = useCart();
+    const cart = useCart(); //obtiene el contexto de carrito
 
-    //Function that allows buying by a cycle that makes update petitions to the DB
-
+    //función que cicla peticiones de actualizar el stock de la base de datos
+    //volviendo a arreglo el objeto de compra
     const Checkout = async (e) =>{
         e.preventDefault();
         for(let i=0;i<Object.keys(cart.boughtObj).length; i++){
@@ -30,7 +31,8 @@ function BotonComprar({objList, total}) {
         }
         window.location.href = '/productos';
     }
-
+    //renderiza el boton de comprar
+    //en caso de no haber productos en el carrito no se muestra el boton
     if (Object.keys(cart.boughtObj).length !== 0){
         return (
             <>

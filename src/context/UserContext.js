@@ -6,4 +6,6 @@ const UserContext = createContext({
     isAdmin: null
 });
 
+//Crea un contexto global que maneja la autentificación del usuario, su usuario y el admin
+
 export default UserContext;

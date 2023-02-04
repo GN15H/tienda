@@ -5,11 +5,10 @@ import  { Link } from 'react-router-dom'
 
 function Producto(props){
     
-    const esAdmin = localStorage.getItem('isAdmin')
-    //const auth = localStorage.getItem('auth')
-    //console.log(auth);
+    const esAdmin = localStorage.getItem('isAdmin')//obtiene el admin desde el localstorage
+  
     
-   
+    //en caso de no ser admin redirecciona al carrito al comprar, si es admin redirecciona al componente de editar
     return(
         <div className="contenedor-producto" >
            

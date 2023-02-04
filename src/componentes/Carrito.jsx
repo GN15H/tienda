@@ -17,10 +17,10 @@ const URI = 'http://localhost:8000/productos/'
 
 function Carrito() {
 
-    const cart = useCart()
-    const user = useUser()
+    const cart = useCart()//obtiene el contexto del carro
+    const user = useUser() //obtiene e contexto del usuario
 
-    const buy = id => {
+    const buy = id => { //funcion que le suma cantidad al objeto comprado, afectando el contexto
         if (cart.boughtObj.hasOwnProperty(id)) {
             cart.boughtObj[id]++;
         } else {
@@ -29,48 +29,48 @@ function Carrito() {
         cart.setBoughtObj({...cart.boughtObj})
     }
     
-     const deleteBought = id => {
+     const deleteBought = id => { //funcion que le quita cantidad al objeto comprado, afectando el contexto
         if (cart.boughtObj[id] >= 0) {
             cart.boughtObj[id]--;
         }
-        if (cart.boughtObj[id] == 0) {
+        if (cart.boughtObj[id] == 0) { //en caso de haber cero cantidad quitarlo del objeto
             delete cart.boughtObj[id];
         }
         cart.setBoughtObj({...cart.boughtObj})
     }
     
 
-    const [prods, setProd] = useState([]);
+    const [prods, setProd] = useState([]); //usestate que se utilizara para almacenear la información de los registros
     useEffect(() => {
         getProds()
     }, [cart]);
 
-    const getProds = async () => {
+    const getProds = async () => { //genera petición de todos los productos e imagenes
         const res = await axios.get(URI)
         const resImage = await axios.get(URI + 'images/')
         let response = []
         for (let i = 0; i < res.data.length; i++) {
-            response.push({ info: res.data[i], imagen: resImage.data[i] })
+            response.push({ info: res.data[i], imagen: resImage.data[i] })//arreglo con productos e imagen
         }
         const bought = []
-        Object.keys(cart.boughtObj).map(id => bought.push(response[id - 1]))
+        Object.keys(cart.boughtObj).map(id => bought.push(response[id - 1]))//arreglo que solo obtiene los productos que han sido añadidos
         setProd(bought)
     }
 
-    if (!user.auth) {
+    if (!user.auth) { //en caso de no estar registrado lo retorna al login
         return <Navigate to={'/login'} />
     }
 
     let total = 0
     
-    return (
+    return ( //contenedor que mapea el arreglo de los productos que han sido añadidos al carrito
         <div className="contenedor-contador-carrito">
             <div className="contenedor-contador-carrito-detalles">
                 <h3>CANTIDAD DE PRODUCTOS:</h3>
             </div>
             <div className="contenedor-compras">
                 {
-                    prods.map((product, index) =>
+                    prods.map((product, index) => //naepo del arreglo que muestra los productoss
                         {total = total + product.info.precio*cart.boughtObj[product.info.id]
                           return(  
                             <Compras
@@ -91,7 +91,7 @@ function Carrito() {
                     )
                 }
             </div>
-
+                
             <BotonComprar 
                 objList={prods}
                 total={total}
