@@ -37,8 +37,8 @@ function BotonComprar({objList, total}) {
     if (Object.keys(cart.boughtObj).length !== 0){
         return (
             <>
-            <Elements stripe={StripePromesing}>
-                <Payment/>
+            <Elements  stripe={StripePromesing}>
+                <Payment Checkout={Checkout} total={total} objList={objList}/>
             </Elements>
 
             <div className="contenedor-boton-comprar-total">

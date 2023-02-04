@@ -1,25 +1,27 @@
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js'
 import axios from 'axios'
 
-function Payment(){
+function Payment(props){
     const stripe = useStripe()
     const elements = useElements()
 
-    function submit(e){//funcion que crea un metodo de pago
+    const submit = async (e) => {//funcion que crea un metodo de pago
         e.preventDefault();
         stripe.createPaymentMethod({
             type:"card", 
             card:elements.getElement(CardElement)
         })
-        .then((data) =>{ //avisa en caso de ser un proceso invaido
+        .then( async (data) =>{ //avisa en caso de ser un proceso invaido
             if(!data.paymentMethod){
-                alert('No vaido')
+                alert('No valido')
                 return 
             }
-            axios.post({ //genera una petición donde manda los datos de la compra al backend
+            console.log('Metodo creado');
+            await axios.post({ //genera una petición donde manda los datos de la compra al backend
                 id:data.paymentMethod.id, 
                 amount:10000,description:'Payment'
             }).then((res) =>{
+                props.Checkout(e)
                 if(res.status == 204){//Aviso en caso de haber sido exitoso
                     console.log('Exito');
                 }
