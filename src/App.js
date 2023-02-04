@@ -7,7 +7,6 @@ import Editar from './componentes/Editar';
 import Header from './componentes/Header'
 import Login from './componentes/Login';
 import PerfilAdmin from './componentes/PerfilAdmin';
-import Producto from './componentes/Producto';
 import Register from './componentes/Register';
 import VistaProducto from './componentes/VistaProducto';
 import CartContext from './context/CartContext';

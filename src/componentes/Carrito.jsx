@@ -3,15 +3,12 @@ import '../hojas-de-estilo/Carrito.css'
 import axios from 'axios'
 import Compras from './Compras'
 import useUser from "../hooks/useUser"
-import { Link, Navigate, useLocation } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import useCart from "../hooks/useCart"
 import BotonComprar from "./BotonComprar"
 
-const URI = 'http://localhost:8000/productos/'
-
-
-
-
+// const URI = 'http://localhost:8000/productos/'
+const URI = 'https://react-backend.onrender.com/productos/'
 
 
 
@@ -33,7 +30,7 @@ function Carrito() {
         if (cart.boughtObj[id] >= 0) {
             cart.boughtObj[id]--;
         }
-        if (cart.boughtObj[id] == 0) { //en caso de haber cero cantidad quitarlo del objeto
+        if (cart.boughtObj[id] === 0) { //en caso de haber cero cantidad quitarlo del objeto
             delete cart.boughtObj[id];
         }
         cart.setBoughtObj({...cart.boughtObj})
@@ -42,21 +39,23 @@ function Carrito() {
 
     const [prods, setProd] = useState([]); //usestate que se utilizara para almacenear la información de los registros
     useEffect(() => {
+        const getProds = async () => { //genera petición de todos los productos e imagenes
+            const res = await axios.get(URI)
+            const resImage = await axios.get(URI + 'images/')
+            let response = []
+            for (let i = 0; i < res.data.length; i++) {
+                response.push({ info: res.data[i], imagen: resImage.data[i] })//arreglo con productos e imagen
+            }
+            const bought = []
+            Object.keys(cart.boughtObj).map(id => bought.push(response[id - 1]))//arreglo que solo obtiene los productos que han sido añadidos
+            setProd(bought)
+        }
+    
+
         getProds()
     }, [cart]);
 
-    const getProds = async () => { //genera petición de todos los productos e imagenes
-        const res = await axios.get(URI)
-        const resImage = await axios.get(URI + 'images/')
-        let response = []
-        for (let i = 0; i < res.data.length; i++) {
-            response.push({ info: res.data[i], imagen: resImage.data[i] })//arreglo con productos e imagen
-        }
-        const bought = []
-        Object.keys(cart.boughtObj).map(id => bought.push(response[id - 1]))//arreglo que solo obtiene los productos que han sido añadidos
-        setProd(bought)
-    }
-
+   
     if (!user.auth) { //en caso de no estar registrado lo retorna al login
         return <Navigate to={'/login'} />
     }
@@ -70,7 +69,7 @@ function Carrito() {
             </div>
             <div className="contenedor-compras">
                 {
-                    prods.map((product, index) => //naepo del arreglo que muestra los productoss
+                    prods.map((product, index) => //naepo del arreglo que muestra los productos
                         {total = total + product.info.precio*cart.boughtObj[product.info.id]
                           return(  
                             <Compras

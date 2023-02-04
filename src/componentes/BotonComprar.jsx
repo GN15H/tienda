@@ -6,7 +6,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import Payment from "./Payment";
 //Componente que contiene el boton de comprar
 
-const URI = 'http://localhost:8000/productos/'
+// const URI = 'http://localhost:8000/productos/'
+const URI = 'https://react-backend.onrender.com/productos/'
 
 const StripePromesing = loadStripe('pk_test_51MWqvEH14MvRoLxV0ls6y6bbsLJsiRwd6aWUbvRfwZgMRWCL3pcKd5YtvFLh8ufk6so1AnVE1JjunhYRbx7dnyRC00IB2DhJIq')
 //se carga la clave publica del checkout
@@ -20,8 +21,8 @@ function BotonComprar({objList, total}) {
     const Checkout = async (e) =>{
         e.preventDefault();
         for(let i=0;i<Object.keys(cart.boughtObj).length; i++){
-            await axios.put(URI + objList[i].info.id, 
-                {stock: parseInt(objList[i].info.stock)-parseInt(cart.boughtObj[objList[i].info.id])})
+            await axios.put(URI + objList[i].info.id,               
+                {stock: parseInt(objList[i].info.stock)-parseInt(cart.boughtObj[objList[i].info.id])}) //hace el calculo de restar el stock actual con la cantidad comprada
                 .then(({data}) =>{
                     alert('Compra Realizada')
                 })

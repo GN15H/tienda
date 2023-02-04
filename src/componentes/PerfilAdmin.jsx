@@ -3,8 +3,9 @@ import axios from "axios"
 import { Link, Navigate } from "react-router-dom"
 import useUser from "../hooks/useUser"
 
-const URI = 'http://localhost:8000/productos/edit/1'
-
+// const URI = 'http://localhost:8000/productos/edit/1'
+// const URI = 'http://localhost:8000/productos/'
+const URI = 'https://react-backend.onrender.com/productos/edit/1'
 
 function PerfilAdmin(){
     const user = useUser();//obtiene los datos del admin

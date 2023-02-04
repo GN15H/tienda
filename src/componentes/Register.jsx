@@ -3,26 +3,26 @@ import '../hojas-de-estilo/Login.css'
 import { Link, Navigate } from "react-router-dom"
 import axios from "axios"
 
-const URI = 'http://localhost:8000/productos/'
-
+// const URI = 'http://localhost:8000/productos/'
+const URI = 'https://react-backend.onrender.com/productos/'
 
 function Register({setGlobal}){
-    const [body, setBody] = useState({username: '', password:'', email: '', address:'', phone:0}) 
+    const [body, setBody] = useState({username: '', password:'', email: '', address:'', phone:0}) //se genera un useState para manejar un body el cual se le entregara a la petición de registro
 
-    const [auth, setAuth] = useState(false)
+    const [auth, setAuth] = useState(false) //useState para verificar autentificación al ser registrado exitosamente
 
-    const inputChange = ({target})=>{
+    const inputChange = ({target})=>{ //funcion que cambia los valores del body cada vez que se escribe algo en los formularios
         const {name, value} = target
         setBody({
             ...body,
             [name]: value
         })
     }
-    const onSubmit = (e)=>{
+    const onSubmit = (e)=>{//funcion que envia la petición de registro con el body,
         e.preventDefault();
         axios.post(URI + 'reg', body)
         .then(({data}) =>{
-            if (data !== 'Exito') return
+            if (data !== 'Exito') return //en caso de ser exitoso el registro se guard en el localstorage y se cambia el auth
 
                 localStorage.setItem('auth', true)
                 localStorage.setItem('username', body.username)
@@ -34,11 +34,11 @@ function Register({setGlobal}){
             console.log(response.data);
         })
     }
-    if(auth){
+    if(auth){//en caso de ya haber sido autentificado es devuelto para los productos
         console.log('deberia');
         return <Navigate to='/productos' />
     }
-
+    //formulario que contiene los diferentes inputs que va a contener el body
     return(
         <div className="login">
             <div className="username-password">

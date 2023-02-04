@@ -1,6 +1,5 @@
 import React from "react";
 import amazonLogo from '../imagenes/amazon-logo.png'
-import carrito from '../imagenes/carrito.webp'
 import '../hojas-de-estilo/Header.css'
 import { Link } from "react-router-dom";
 import LoginRegisterProfile from "./LoginRegisterProfile";
@@ -18,6 +17,7 @@ function Header({setGlobal}){
                 </div>
             </Link>
             <div className="contenedor-links">
+                {/* componente donde se puede renderizar el carrito o el login */}
                 <LoginRegisterProfile setGlobal={setGlobal} className="contenedor-links"/>
              
                 

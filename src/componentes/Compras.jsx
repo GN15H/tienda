@@ -4,7 +4,8 @@ import useUser from '../hooks/useUser'
 import useCart from '../hooks/useCart'
 import axios from 'axios'
 
-const cond = 'http://localhost:8000/productos'
+// const cond = 'http://localhost:8000/productos/'
+const cond = 'https://react-backend.onrender.com/productos/'
 
 function Compras(props){
     const cart = useCart()//obtiene la información del carro

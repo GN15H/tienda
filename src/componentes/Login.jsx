@@ -3,7 +3,8 @@ import '../hojas-de-estilo/Login.css'
 import { Link, redirect, Navigate } from "react-router-dom"
 import axios from "axios"
 
-const URI = 'http://localhost:8000/productos/'
+// const URI = 'http://localhost:8000/productos/'
+const URI = 'https://react-backend.onrender.com/productos/'
 
 function Login({ setGlobal }){
 

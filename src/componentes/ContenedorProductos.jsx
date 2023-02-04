@@ -5,8 +5,8 @@ import '../hojas-de-estilo/ContenedorProductos.css'
 import axios from 'axios'
 import  { Link } from 'react-router-dom'
 
-const URI = 'http://localhost:8000/productos/'
-
+// const URI = 'http://localhost:8000/productos/'
+const URI = 'https://react-backend.onrender.com/productos/'
 
 function ContenedorProductos(props){
 
@@ -21,12 +21,9 @@ function ContenedorProductos(props){
         const res = await axios.get(URI)//obtiene todos los productos
         const resImage = await axios.get(URI + 'images/') //obtiene todas las imagenes
         let response = [] //arreglo que contieene productos
-        //console.log(res.data);
-        //console.log(images.data);
-        for (let i = 0; i< res.data.length; i++){ //junta en un arreglo los productos e imagnes
+        for (let i = 0; i< res.data.length; i++){ //junta en un arreglo los productos e imagenes
             response.push({datos: res.data[i], imagen: resImage.data[i]})
         }
-        //console.log(blogs[0].imagen);
         setBlog(response)
         console.log(blogs);
     }

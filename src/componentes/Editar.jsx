@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react"
-import Producto from "./Producto";
-import productos from './ProductosPrueba'
+import { useState } from "react"
 import '../hojas-de-estilo/ContenedorProductos.css'
 import axios from 'axios'
 import { Link, useLocation } from 'react-router-dom'
 
-const URI = 'http://localhost:8000/productos/'
-
+// const URI = 'http://localhost:8000/productos/'
+const URI = 'https://react-backend.onrender.com/productos/'
 
 function Editar() {
     //obtiene el path de la url
@@ -16,12 +14,11 @@ function Editar() {
     //console.log(cond + location[dato])
     let a = ''
 
-    let b= ''
 
     //obtiene el id mediante la url
     function id (contador, b){
         if (contador>= 0){
-            if (location[contador] == '/'){
+            if (location[contador] === '/'){
                 a = b
             }else{
                 //console.log( location[contador] + b);
@@ -70,7 +67,6 @@ function Editar() {
                     <input type="text" placeholder="Stock máximo del Producto" name="maxStock" value={body.maxStock} onChange={inputChange}/>
                     <Link to="/productos" className="submit-login" >
                         <button className="boton-login" onClick={onSubmit}>EDITAR</button>
-
                     </Link>
                 </form>
 
